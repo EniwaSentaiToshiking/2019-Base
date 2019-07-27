@@ -15,6 +15,7 @@ CourseRun::CourseRun(Course course){
 CourseRun::~CourseRun(){
     for_each(lots.begin(), lots.end(), DeleteObject());
     lots.clear();
+    ev3_speaker_play_tone(480, 100);
 }
 
 void CourseRun::init(){
@@ -28,22 +29,59 @@ void CourseRun::setNextState(){
     }
 }
 
+// coruseの距離は1000 1050くらいで調整
 void CourseRun::createCourseL(){
-    patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 20, 0.7, 0.0, 0.03, 40));//30
-    patterns.push_back(new RunPattern(LINE_TRACE, 50, DISTANCE, 560, 0.25, 0.01, 0.03, 60));
-    patterns.push_back(new RunPattern(LINE_TRACE, 50, DISTANCE, 120, 0.55, 0.01, 0.03, 60));
-    patterns.push_back(new RunPattern(LINE_TRACE, 50, DISTANCE, 80,  0.6, 0.01, 0.03, 60));//ここ変える３０0.55
-    patterns.push_back(new RunPattern(LINE_TRACE, 50, DISTANCE, 250, 0.7, 0.01, 0.03, 60));
-    patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 90, 0.6, 0.0, 0.03, 80));//30
+    patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 20, 0.7, 0.0, 0.03, 40));
+    patterns.push_back(new RunPattern(LINE_TRACE, 50, DISTANCE, 50, 0.25, 0.0, 0.03, 60));
+
+    patterns.push_back(new RunPattern(LINE_TRACE, 50, DISTANCE, 70, 0.35, 0.0, 0.03, 60));
+    patterns.push_back(new RunPattern(LINE_TRACE, 50, DISTANCE, 70, 0.25, 0.0, 0.03, 60));
+    patterns.push_back(new RunPattern(LINE_TRACE, 50, DISTANCE, 70, 0.35, 0.0, 0.03, 60));
+
+    // s字
+    patterns.push_back(new RunPattern(LINE_TRACE, 40, DISTANCE, 70, 0.5, 0.01, 0.03, 60));
+    patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 30, 0.6, 0.01, 0.03, 60));
+
+    // GATE1からの円
+    patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 100, 0.65, 0.01, 0.05, 60));
+    patterns.push_back(new RunPattern(LINE_TRACE, 45, DISTANCE, 20, 0.25, 0.01, 0.03, 60)); // 500
+
+    patterns.push_back(new RunPattern(LINE_TRACE, 40, DISTANCE, 90, 0.45, 0.01, 0.03, 60));
+
+    patterns.push_back(new RunPattern(LINE_TRACE, 50, DISTANCE, 90, 0.25, 0.01, 0.03, 60));
+    patterns.push_back(new RunPattern(LINE_TRACE, 35, DISTANCE, 70, 0.5, 0.01, 0.03, 60));
+
+    patterns.push_back(new RunPattern(LINE_TRACE, 40, DISTANCE, 10, 0.25, 0.01, 0.03, 60));
+    patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 30, 0.55, 0.01, 0.03, 60));
+
+    patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 150, 0.65, 0.01, 0.05, 60));
+    patterns.push_back(new RunPattern(LINE_TRACE, 50, DISTANCE, 60, 0.25, 0.01, 0.03, 80));
 }
 
 void CourseRun::createCourseR(){
-    patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 20, 0.7, 0.0, 0.03, 40));
-    patterns.push_back(new RunPattern(LINE_TRACE, 80, DISTANCE, 200, 0.25, 0.03, 0.03, 60));
-    patterns.push_back(new RunPattern(LINE_TRACE, 60, DISTANCE, 180, 0.25, 0.01, 0.05, 60));
-    patterns.push_back(new RunPattern(LINE_TRACE, 60, DISTANCE, 220, 0.45, 0.01, 0.035, 60));
-    patterns.push_back(new RunPattern(LINE_TRACE, 60, DISTANCE, 140, 0.35, 0.01, 0.04, 60));
-    patterns.push_back(new RunPattern(LINE_TRACE, 80, DISTANCE, 260, 0.25, 0.03, 0.03, 60));
-    patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 500));
-    patterns.push_back(new RunPattern(LINE_TRACE, 40, DISTANCE, 100, 0.5, 0.0, 0.03, 80));
+    patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 20, 0.7, 0.0, 0.03, 40, RIGHT));
+    patterns.push_back(new RunPattern(LINE_TRACE, 50, DISTANCE, 50, 0.25, 0.0, 0.03, 60, RIGHT));
+
+    patterns.push_back(new RunPattern(LINE_TRACE, 50, DISTANCE, 70, 0.35, 0.0, 0.03, 60, RIGHT));
+    patterns.push_back(new RunPattern(LINE_TRACE, 50, DISTANCE, 70, 0.25, 0.0, 0.03, 60, RIGHT));
+    patterns.push_back(new RunPattern(LINE_TRACE, 50, DISTANCE, 70, 0.35, 0.0, 0.03, 60, RIGHT));
+
+    // s字
+    patterns.push_back(new RunPattern(LINE_TRACE, 40, DISTANCE, 70, 0.5, 0.01, 0.03, 60, RIGHT));
+    patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 30, 0.6, 0.01, 0.03, 60, RIGHT));
+
+    // GATE1からの円
+    patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 100, 0.65, 0.01, 0.05, 60, RIGHT));
+    patterns.push_back(new RunPattern(LINE_TRACE, 45, DISTANCE, 20, 0.25, 0.01, 0.03, 60, RIGHT)); // 500
+
+    patterns.push_back(new RunPattern(LINE_TRACE, 40, DISTANCE, 90, 0.45, 0.01, 0.03, 60, RIGHT));
+
+    patterns.push_back(new RunPattern(LINE_TRACE, 50, DISTANCE, 90, 0.25, 0.01, 0.03, 60, RIGHT));
+    patterns.push_back(new RunPattern(LINE_TRACE, 35, DISTANCE, 70, 0.5, 0.01, 0.03, 60, RIGHT));
+
+    patterns.push_back(new RunPattern(LINE_TRACE, 40, DISTANCE, 10, 0.25, 0.01, 0.03, 60, RIGHT));
+    patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 30, 0.55, 0.01, 0.03, 60, RIGHT));
+
+    patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 150, 0.65, 0.01, 0.05, 60, RIGHT));
+    patterns.push_back(new RunPattern(LINE_TRACE, 50, DISTANCE, 60, 0.25, 0.01, 0.03, 80, RIGHT));
 }
