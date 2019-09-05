@@ -1,5 +1,6 @@
 #include "Detecter.h"
 #include "Localization.h"
+#include "RunStyle.h"
 #include "Lot.h"
 #include "ev3api.h"
 
@@ -12,9 +13,10 @@ class DirectionDetecter : public Detecter
     Localization *local;
     int threshold;
     int prev_direction;
+    TurningDirection turningDirection;
 
   public:
-    DirectionDetecter(int threshold);
+    DirectionDetecter(int threshold, TurningDirection turningDirection);
 
     void init();
     /**

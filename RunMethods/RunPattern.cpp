@@ -100,7 +100,7 @@ void RunPattern::createDetecter()
         this->detecter = new DistanceDetecter(this->threshold);
         break;
     case DIRECTION:
-        this->detecter = new DirectionDetecter(this->threshold);
+        this->detecter = new DirectionDetecter(this->threshold, this->direction);
         break;
     case ADAPTIVEDIRECTION:
         this->detecter = new AdaptiveDirectionDetecter(this->threshold);
