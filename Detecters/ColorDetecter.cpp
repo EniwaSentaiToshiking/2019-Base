@@ -36,8 +36,15 @@ bool ColorDetecter::detect()
         int count = 0;
 
         for (int i = 0; i < color_buffer_max; i++)
-        {
-            if (currentColor == threshold) count++;
+        {   
+            if (threshold == 8) 
+            {
+                if (currentColor >= 2 && currentColor <=5) count++;
+            }
+            else 
+            {
+                if (currentColor == threshold) count++;
+            }
         }
 
     if (count == color_buffer_max)
