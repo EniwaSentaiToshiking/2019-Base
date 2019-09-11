@@ -20,6 +20,7 @@ struct DeleteObject
 enum RunState {
     COURSE_RUN,
     PARKING,
+    GAME,
     STOP,
 };
 
