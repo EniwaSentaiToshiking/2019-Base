@@ -41,6 +41,16 @@ RunPattern::RunPattern(Pattern pattern, int speed, DetectType type, float thresh
     init();
 }
 
+RunPattern::RunPattern(Pattern pattern, int arm, int threshold)
+{
+    this->pattern = pattern;
+    this->speed = 0;
+    this->arm = arm;
+    this->detectType = CLOCK;
+    this->threshold = threshold;
+    init();
+}
+
 void RunPattern::init()
 {
     runCommander = new RunCommander();
@@ -82,12 +92,14 @@ void RunPattern::createRunStyle()
     case BRAKE:
         runStyle = new Straight(this->speed);
         break;
+    case ARM:
+        runStyle = new Straight(this->speed);
+        break;
     }
 }
 
 void RunPattern::createDetecter()
 {
-
     switch (this->detectType)
     {
     case POINT:
@@ -124,22 +136,34 @@ bool RunPattern::run()
 {
     if (!isInitializeDetecter)
     {
-        detecter->init();
         runStyle->init();
+        detecter->init();
         isInitializeDetecter = true;
     }
 
     int turn = runStyle->getTurnValue();
     tailCommander->rotateDefault();
-    armCommander->rotateDefault();
 
     if (this->pattern == BRAKE)
     {
         runCommander->steerStop();
+        armCommander->rotateDefault();
+    }
+    else if (this->pattern == ARM)
+    {   
+        if (this->arm == 0)
+        {
+            armCommander->rotateDefault();
+        } 
+        else 
+        {
+            armCommander->rotate(this->arm);
+        }
     }
     else
     {
         runCommander->steer(this->speed, turn);
+        armCommander->rotateDefault();
     }
 
     if (detecter->detect())
