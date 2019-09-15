@@ -27,6 +27,9 @@ void RunManager::changeStatus(RunState state){
         case COURSE_RUN:
             status = new CourseRun(course);
             break;
+        case GAME:
+            status = new Game(course);
+            break;
         case PARKING:
             status = new Parking(course);
             break;

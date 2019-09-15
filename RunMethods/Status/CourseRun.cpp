@@ -23,9 +23,9 @@ void CourseRun::init(){
 
 void CourseRun::setNextState(){
     if(this->course == L) {
-        nextState = STOP;
+        nextState = GAME;
     }else if(this->course == R){
-        nextState = STOP;
+        nextState = GAME;
     }
 }
 

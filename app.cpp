@@ -2,6 +2,7 @@
 #include "app.h"
 #include "Clock.h"
 #include "UI.h"
+#include "Block.h"
 #include "RunManager.h"
 
 using namespace ev3api;
@@ -26,9 +27,9 @@ UI *ui;
 RunManager *runManager;
 ArmMotorDriver *armMotor;
 
-int color[4];
-int black[2];
-int analogAnswer = 8;
+int cross[8];
+int bonus[2];
+int number = 8;
 
 const Course course = L;
 
@@ -61,9 +62,7 @@ void main_task(intptr_t unused)
 
         if (ui->isTouched())
         {
-            if(course == R){
-                fprintf(bt, "%d\n", 5);
-            }
+            fprintf(bt, "%d\n", 5);
             break; /* タッチセンサが押された */
         }
 
@@ -79,6 +78,26 @@ void main_task(intptr_t unused)
         if (ev3_button_is_pressed(BACK_BUTTON))
             break;
 
+        if (bt_cmd == 1)
+        {
+            Block &block = Block::singleton();
+            block.cross1 = cross[0];
+            block.cross2 = cross[1];
+            block.cross3 = cross[2];
+            block.cross4 = cross[3];
+            block.cross5 = cross[4];
+            block.cross6 = cross[5];
+            block.cross7 = cross[6];
+            block.cross8 = cross[7];
+
+            block.bonus_pos = bonus[0];
+            block.bonus_color = bonus[1];
+
+            block.number = number;
+
+            bt_cmd = -1;
+        }
+
         runManager->run();
 
         clock->sleep(4); /* 4msec周期 */
@@ -90,26 +109,19 @@ void main_task(intptr_t unused)
     ext_tsk();
 }
 
-void get_color(int color_pos[4], char all_pos[256])
+void get_cross(int cross_pos[8], char all_pos[256])
 {
-    for (int i = 0; i < 4; i++)
+    for (int i = 1; i < 9; i++)
     {
-        if (all_pos[2 * i] == '0')
-        {
-            color_pos[i] = all_pos[(2 * i) + 1] - 48;
-        }
-        else
-        {
-            color_pos[i] = 10 + all_pos[(2 * i) + 1] - 48;
-        }
+        cross_pos[i] = all_pos[i] - 48;
     }
 }
 
-void get_black(int black_pos[2], char all_pos[256])
+void get_bonus(int bonus_pos[2], char all_pos[256])
 {
-    for (int i = 0; i < 2; i++)
+    for (int i = 9; i < 11; i++)
     {
-        black_pos[i] = all_pos[i + 8] - 48;
+        bonus_pos[i] = all_pos[i] - 48;
     }
 }
 
@@ -119,38 +131,28 @@ void bt_task(intptr_t unused)
     int count = 0;
 
     while (1)
-    {
+    {   
         uint8_t c = fgetc(bt); /* 受信 */
-
-        if (course == L)
+        if (c - 48 >= 0 && c - 48 <= 9 && count <= 10)
         {
-            if (c - 48 >= 0 && c - 48 <= 7){
-                analogAnswer = c - 48;
-                bt_cmd = 1;
-                break;
+            if (count == 0)
+            {
+                snprintf(tmp, 255, "%d", c - 48);
             }
+            else
+            {
+                snprintf(tmp, 255, "%s%d", tmp, c - 48);
+            }
+            count++;
         }
-        else if (course == R)
+        else if (count == 11)
         {
-            if (c - 48 >= 0 && c - 48 <= 9 && count <= 9)
-            {
-                if (count == 0)
-                {
-                    snprintf(tmp, 255, "%d", c - 48);
-                }
-                else
-                {
-                    snprintf(tmp, 255, "%s%d", tmp, c - 48);
-                }
-                count++;
-            }
-            else if (count == 10)
-            {
-                get_color(color, tmp);
-                get_black(black, tmp);
-                bt_cmd = 1;
-                break;
-            }
+            get_cross(cross, tmp);
+            get_bonus(bonus, tmp);
+            number = tmp[0];
+            bt_cmd = 1;
+
+            break;
         }
         fputc(c, bt); /* エコーバック */
     }

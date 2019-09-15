@@ -24,6 +24,7 @@ APPL_CXXOBJS += \
     TailCommander.o \
     WheelInfo.o \
     Localization.o \
+    Block.o \
     CourceMonitor.o \
     Lot.o \
     SpeedCal.o \
@@ -34,6 +35,7 @@ APPL_CXXOBJS += \
     Logger.o \
     RunStatus.o \
     CourseRun.o \
+    Game.o \
     Parking.o \
     Stop.o \
     RunStyle.o \
