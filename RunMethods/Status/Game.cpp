@@ -103,7 +103,13 @@ void Game::parking(int direction){ // 駐車に向けた動き
         patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE, 5));
         patterns.push_back(new RunPattern(SPIN, 10, DIRECTION, 360 - direction, DIRECTION_LEFT));
     }
-    patterns.push_back(new RunPattern(STRAIGHT, 20, BLACKLINE, 1)); 
+    if (this->course == L) {
+        patterns.push_back(new RunPattern(STRAIGHT, 20, BLACKLINE, 1)); 
+    } else {
+        patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE, 25));
+        patterns.push_back(new RunPattern(SPIN, 30, DIRECTION, 65, DIRECTION_LEFT));
+        patterns.push_back(new RunPattern(STRAIGHT, 10, BLACKLINE, 1));
+    } 
 }
 
 void Game::createCourseL(){
@@ -112,24 +118,11 @@ void Game::createCourseL(){
     int bonus[2]={block.bonus_pos, block.bonus_color};
     int number = block.number;
 
+    turnL();
     turnR();
-
-    for (int i = 0; i < 10; i++){
-        turnL();
-        turnL();
-        release(35);
-        turnR();
-        turnL();
-        release(325);
-        jumpCircle();
-        release(35);
-        turnL();
-        turnL();
-        turnR();
-        release(325);
-        turnL();
-        jumpCircle();
-    }
+    jumpCircle();
+    jumpCircle();
+    parking(0);
 }
 
 void Game::createCourseR(){
@@ -138,5 +131,9 @@ void Game::createCourseR(){
     int bonus[2]={block.bonus_pos, block.bonus_color};
     int number = block.number;
 
-    // patterns.push_back(new RunPattern(BRAKE, 0, DISTANCE, 30));
+    turnR();
+    turnL();
+    jumpCircle();
+    jumpCircle();
+    parking(0);
 }
