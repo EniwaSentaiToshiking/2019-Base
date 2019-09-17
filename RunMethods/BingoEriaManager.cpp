@@ -141,9 +141,10 @@ void goalPrint(Goal goal)
 void blockBingoCirclePrint(BlockBingoCircle blockBingoCircle)
 {
     printf("blockBingoCircle.name: %s ", blockBingoCircle.name.c_str());
-    goalPrint(blockBingoCircle.goal);
     printf("numberId: %d ", blockBingoCircle.numberId);
     printf("colorId: %d ", blockBingoCircle.colorId);
+    printf("\n");
+    goalPrint(blockBingoCircle.goal);
 };
 
 void BingoEriaPrint(BingoEria bingoEria)
