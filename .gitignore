@@ -1,5 +1,9 @@
 ### https://raw.github.com/github/gitignore/ef033de91f04e2f9df8dbbd2d459c4be59bae507/C++.gitignore
 
+
+# 
+BingoEriaManager
+
 # Prerequisites
 *.d
 
