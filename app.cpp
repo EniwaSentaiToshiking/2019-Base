@@ -31,7 +31,7 @@ int cross[8];
 int bonus[2];
 int number = 8;
 
-const Course course = L;
+const Course course = R;
 
 /* メインタスク */
 void main_task(intptr_t unused)

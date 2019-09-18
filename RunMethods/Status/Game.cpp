@@ -112,6 +112,7 @@ void Game::parking(int direction){ // 駐車に向けた動き
     } 
 }
 
+// 色　0:red 1:blue 2:yellow 3:green 4:black
 void Game::createCourseL(){
     Block &block = Block::singleton();
     int blocks[8]={block.cross1, block.cross2, block.cross3, block.cross4, block.cross5, block.cross6, block.cross7, block.cross8};
@@ -131,9 +132,1249 @@ void Game::createCourseR(){
     int bonus[2]={block.bonus_pos, block.bonus_color};
     int number = block.number;
 
-    turnR();
-    turnL();
-    jumpCircle();
-    jumpCircle();
-    parking(0);
+    if (blocks[0] == 4) {
+        if (blocks[3] == 2) {
+            turnR();
+            release(135);
+            turnL();
+            turnL();
+            if (blocks[5] == 0) {
+                release(35);
+                turnR();
+            } else {
+                turnR();
+                release(325);
+            }
+            jumpCircle();
+            turnR();
+            release(35);
+            jumpCircle(); // 0位置の黒を捕獲
+        } else if(blocks[7] == 0 || blocks[6] == 1) {
+            turnL();
+            turnR();
+            release(35);
+            jumpCircle();
+            release(35);
+            jumpCircle();
+            turnR();
+            jumpCircle();
+            release(35);
+            jumpCircle(); // 0位置の黒を捕獲
+        } else {
+            jumpCircle();
+            if(blocks[5] == 0) {
+                release(325);
+                jumpCircle();
+            } else {
+                jumpCircle();
+                release(325);
+            }
+            jumpCircle();
+            turnR();
+            release(35);
+            jumpCircle(); // 0位置の黒を捕獲
+        }
+        // ボーナスナンバーによる場合分け
+        switch (number) {
+            case 1:
+                turnR();
+                jumpCircle();
+                turnR();
+                turnR();
+                release(35);
+                jumpCircle();
+                parking(0);
+                break;
+            case 2:
+                turnR();
+                release(35);
+                turnR();
+                release(35);
+                turnR();
+                parking(0);
+                break;
+            case 3:
+                turnR();
+                jumpCircle();
+                release(35);
+                turnR();
+                turnR();
+                release(325);
+                jumpCircle();
+                parking(0);
+                break;
+            case 4:
+                turnR();
+                turnR();
+                release(35);
+                turnR();
+                parking(0);
+                break;
+            case 5:
+                turnR();
+                jumpCircle();
+                turnR();
+                release(325);
+                turnR();
+                release(325);
+                jumpCircle();
+                parking(0);
+                break;
+            case 6:
+                turnR();
+                turnR();
+                jumpCircle();
+                release(35);
+                turnR();
+                turnR();
+                parking(260);
+                break;
+            case 7:
+                turnR();
+                turnR();
+                jumpCircle();
+                release(325);
+                turnR();
+                turnR();
+                parking(260);
+                break;
+            case 8:
+                turnR();
+                jumpCircle();
+                turnR();
+                jumpCircle();
+                release(35);
+                turnR();
+                jumpCircle();
+                turnR();
+                parking(260);
+                break;
+        }
+    } else if(blocks[1] == 4) {
+        if (blocks[3] == 2) {
+            turnR();
+            release(135);
+            turnL();
+            turnL();
+            if (blocks[5] == 0) {
+                release(35);
+                turnR();
+            } else {
+                turnR();
+                release(325);
+            }
+            jumpCircle();
+            turnR();
+            release(35);
+            jumpCircle(); 
+            turnR();
+            release(35);
+            jumpCircle(); // 1位置の黒を捕獲
+        } else if(blocks[7] == 0 || blocks[6] == 1) {
+            turnL();
+            turnR();
+            release(35);
+            jumpCircle();
+            release(35);
+            jumpCircle();
+            turnR();
+            jumpCircle();
+            release(35);
+            jumpCircle();
+            turnR();
+            release(35);
+            jumpCircle(); // 1位置の黒を捕獲
+        } else {
+            jumpCircle();
+            if(blocks[5] == 0) {
+                release(325);
+                jumpCircle();
+            } else {
+                jumpCircle();
+                release(325);
+            }
+            jumpCircle();
+            turnR();
+            release(35);
+            jumpCircle(); 
+            turnR();
+            release(35);
+            jumpCircle(); // 1位置の黒を捕獲
+        }
+        switch(number) {
+            case 1:
+                turnR();
+                turnR();
+                release(35);
+                jumpCircle();
+                parking(0);
+                break;
+            case 2:
+                jumpCircle();
+                turnR();
+                turnR();
+                release(35);
+                jumpCircle();
+                if(blocks[2] == 2) {
+                    release(325);
+                } else {
+                    release(35);
+                }
+                jumpCircle();
+                parking(0);
+                break;
+            case 3:
+                release(35);
+                turnR();
+                turnR();
+                if(blocks[2] == 2) {
+                    release(325);
+                } else {
+                    release(35);
+                }
+                jumpCircle();
+                parking(0);
+                break;
+            case 4:
+                turnR();
+                jumpCircle();
+                turnR();
+                release(35);
+                turnR();
+                if(blocks[2] == 0) {
+                    release(325);
+                } else {
+                    release(35);
+                }               
+                turnL();
+                parking(0);
+                break;
+            case 5:
+                turnR();
+                release(325);
+                turnR();
+                if(blocks[2] == 2) {
+                    release(325);
+                } else {
+                    release(35);
+                }
+                jumpCircle();
+                parking(0);
+                break;
+            case 6:
+                turnR();
+                jumpCircle();
+                turnR();
+                release(325);
+                turnR();
+                if(blocks[2] == 0) {
+                    release(325);
+                } else {
+                    release(35);
+                }  
+                turnL();
+                parking(0);
+                break;
+            case 7:
+                turnR();
+                jumpCircle();
+                release(35);
+                turnR();
+                turnR();
+                if(blocks[2] == 0) {
+                    release(325);
+                } else {
+                    release(35);
+                } 
+                turnL();
+                parking(0);
+                break;
+            case 8:
+                turnR();
+                jumpCircle();
+                release(325);
+                turnR();
+                turnR();
+                if(blocks[2] == 0) {
+                    release(325);
+                } else {
+                    release(35);
+                } 
+                turnL();
+                parking(0);
+                break;
+        }
+    } else if(blocks[2] == 4) {
+        if(blocks[6] == 1 || blocks[7] == 0) {
+            turnL();
+            turnR();
+            release(35);
+            jumpCircle();
+            release(35);
+            if(blocks[4] == 2) {
+                jumpCircle();
+                turnR();
+                release(35);
+                turnR();
+                turnL(); // 2位置の黒捕獲(右から)
+            } else {
+                turnR();
+                jumpCircle(); // 2位置の黒捕獲(右から)
+            }
+        } else if(blocks[5] == 0 || blocks[5] == 1 || blocks[5] == 2) {
+            jumpCircle();
+            if(blocks[5] == 0) {
+                release(325);
+                jumpCircle();
+            } else if(blocks[5] == 1) {
+                jumpCircle();
+                release(325);
+            } else {
+                jumpCircle();
+                release(35);
+            }
+            turnR(); // 2位置の黒捕獲(右から)
+        } else {
+            turnR();
+            if(blocks[3] == 2) {
+                release(325);
+                turnL();
+            } else {
+                turnL();
+                release(35);
+            }
+            turnL();
+            release(325);
+            turnR();
+            turnR(); // 2位置の黒捕獲(右から)
+        }
+        switch(number) {
+            case 1:
+                release(325);
+                turnL();
+                parking(0);
+                break;
+            case 2:
+                release(35);
+                turnL();
+                parking(0);
+                break;
+            case 3:
+                turnR();
+                release(325);
+                jumpCircle();
+                turnR();
+                if(blocks[3] == 3) {
+                    release(35);
+                    turnR();
+                    jumpCircle();
+                    turnR();
+                    turnL();
+                    parking(0);
+                } else if(blocks[3] == 0) {
+                    turnR();
+                    jumpCircle();
+                    turnR();
+                    release(325);
+                    turnL();
+                    parking(0);
+                } else if(blocks[3] == 1) {
+                    turnR();
+                    jumpCircle();
+                    release(325);
+                    turnR();
+                    turnL();
+                    parking(0);
+                } else {
+                    turnR();
+                    jumpCircle();
+                    release(35);
+                    turnR();
+                    turnL();
+                    parking(0);
+                }
+                break;
+            case 4:
+                turnR();
+                turnR();
+                turnR();
+                release(35);
+                jumpCircle();
+                turnR();
+                release(35);
+                parking(260);
+                break;
+            case 5:
+                turnR();
+                release(35);
+                turnR();
+                if(blocks[5] == 3) {
+                    release(325);
+                    turnR();
+                    turnR();
+                    turnL();
+                    parking(0);
+                } else if(blocks[5] == 0) {
+                    release(35);
+                    turnR();
+                    turnR();
+                    turnL();
+                    parking(0);
+                } else if(blocks[5] == 1) {
+                    turnR();
+                    release(325);
+                    turnR();
+                    turnL();
+                    parking(0);
+                } else {
+                    turnR();
+                    release(35);
+                    turnR();
+                    turnL();
+                    parking(0);
+                }
+                break;
+            case 6:
+                turnR();
+                turnR();
+                turnR();
+                release(325);
+                jumpCircle();
+                turnR();
+                release(35);
+                parking(260);
+                break;
+            case 7:
+                turnR();
+                turnR();
+                release(35);
+                turnR();
+                turnR();
+                turnL();
+                parking(0);
+                break;
+            case 8:
+                turnR();
+                turnR();
+                release(325);
+                turnR();
+                turnR();
+                turnL();
+                parking(0);
+                break;
+        }
+    } else if(blocks[3] == 4) {
+        turnR(); // 3位置の黒捕獲(右から)
+        switch(number) {
+            case 1:
+                turnL();
+                jumpCircle();
+                release(35);
+                jumpCircle();
+                parking(0);
+                break;
+            case 2:
+                turnL();
+                release(35);
+                turnL(); // 5位置の色捕獲(左から)
+                if(blocks[5] == 3) {
+                    release(325);
+                    turnR();
+                    turnR(); // 2位置の色捕獲(左から)
+                } else if(blocks[5] == 0) {
+                    release(35);
+                    turnR();
+                    turnR(); // 2位置の色捕獲(左から)
+                } else if(blocks[5] == 1) {
+                    turnR();
+                    release(325);
+                    turnR(); // 2位置の色捕獲(左から)
+                } else {
+                    turnR();
+                    release(35);
+                    turnR(); // 2位置の色捕獲(左から)
+                }
+                if(blocks[2] == 0) {
+                    release(325);
+                } else {
+                    release(35);
+                }
+                turnL();
+                parking(0);
+                break;
+            case 3:
+                release(325);
+                turnL();
+                turnL(); // 5位置の色捕獲(左から)
+                if(blocks[5] == 3) {
+                    release(325);
+                    turnR();
+                    turnR(); // 2位置の色捕獲(左から)
+                } else if(blocks[5] == 0) {
+                    release(35);
+                    turnR();
+                    turnR(); // 2位置の色捕獲(左から)
+                } else if(blocks[5] == 1) {
+                    turnR();
+                    release(325);
+                    turnR(); // 2位置の色捕獲(左から)
+                } else {
+                    turnR();
+                    release(35);
+                    turnR(); // 2位置の色捕獲(左から)
+                }
+                if(blocks[2] == 0) {
+                    release(325);
+                } else {
+                    release(35);
+                }
+                turnL();
+                parking(0);
+                break;
+            case 4:
+                turnL();
+                jumpCircle();
+                release(325);
+                jumpCircle();
+                parking(0);
+                break;
+            case 5:
+                jumpCircle();
+                turnL();
+                turnL(); 
+                release(325); 
+                jumpCircle(); // 5位置の色捕獲(左から)
+                if(blocks[5] == 3) {
+                    release(325);
+                    turnR();
+                    turnR(); // 2位置の色捕獲(左から)
+                } else if(blocks[5] == 0) {
+                    release(35);
+                    turnR();
+                    turnR(); // 2位置の色捕獲(左から)
+                } else if(blocks[5] == 1) {
+                    turnR();
+                    release(325);
+                    turnR(); // 2位置の色捕獲(左から)
+                } else {
+                    turnR();
+                    release(35);
+                    turnR(); // 2位置の色捕獲(左から)
+                }
+                if(blocks[2] == 0) {
+                    release(325);
+                } else {
+                    release(35);
+                }
+                turnL();
+                parking(0);
+                break;
+            case 6:
+                turnL();
+                turnL();
+                turnR();
+                release(325);
+                jumpCircle();
+                turnR();
+                release(35);
+                parking(260);
+                break;
+            case 7:
+                turnL();
+                turnL();
+                release(35);
+                turnR();
+                turnR();
+                if(blocks[2] == 0) {
+                    release(325);
+                } else {
+                    release(35);
+                }
+                turnL();
+                parking(0);
+                break;
+            case 8:
+                turnL();
+                turnL();
+                release(325);
+                turnR();
+                turnR();
+                if(blocks[2] == 0) {
+                    release(325);
+                } else {
+                    release(35);
+                }
+                turnL();
+                parking(0);
+                break;
+        }
+    } else if(blocks[4] == 4) {
+        if(blocks[5] != 3) {
+            jumpCircle(); // 5位置の色捕獲(正面から)
+            if(blocks[5] == 0) {
+                release(325);
+                jumpCircle();
+                jumpCircle(); // 4位置の黒捕獲(正面から)
+            } else if(blocks[5] == 1) {
+                jumpCircle();
+                release(325);
+                jumpCircle(); // 4位置の黒捕獲(正面から)
+            } else {
+                jumpCircle();
+                release(35);
+                jumpCircle(); // 4位置の黒捕獲(正面から)
+            }
+        } else {
+            turnL();
+            turnR();
+            release(35);
+            jumpCircle();
+            release(35);
+            turnR();
+            turnL(); // 4位置の黒捕獲(正面から)
+        }
+        switch(number) {
+            case 1:
+                turnR();
+                release(35);
+                jumpCircle();
+                turnR();
+                release(35);
+                jumpCircle();
+                release(35);
+                jumpCircle();
+                turnR();
+                release(35);
+                turnR();
+                jumpCircle();
+                if(blocks[2] == 2) {
+                    release(325);
+                } else {
+                    release(35);
+                }
+                jumpCircle();
+                parking(0);
+                break;
+            case 2:
+                turnR();
+                jumpCircle();
+                turnR();
+                release(35);
+                jumpCircle();
+                release(35);
+                jumpCircle();
+                turnR();
+                release(35);
+                turnR();
+                jumpCircle();
+                if(blocks[2] == 2) {
+                    release(325);
+                } else {
+                    release(35);
+                }
+                jumpCircle();
+                parking(0);
+                break;
+            case 3:
+                turnR();
+                jumpCircle();
+                turnR();
+                jumpCircle();
+                release(35);
+                jumpCircle();
+                turnR();
+                release(35);
+                turnR();
+                jumpCircle();
+                if(blocks[2] == 2) {
+                    release(325);
+                } else {
+                    release(35);
+                }
+                jumpCircle();
+                parking(0);
+                break;
+            case 4:
+                turnL();
+                turnL();
+                turnL();
+                release(325);
+                jumpCircle();
+                if(blocks[2] == 2) {
+                    release(325);
+                } else {
+                    release(35);
+                }
+                turnL();
+                parking(0);
+                break;
+            case 5:
+                turnR();
+                turnR();
+                jumpCircle();
+                release(35);
+                turnL();
+                turnL();
+                release(325);
+                jumpCircle();
+                if(blocks[0] == 2) {
+                    jumpCircle();
+                    turnL();
+                    release(325);
+                    parking(80);
+                } else {
+                    turnL();
+                    release(35);
+                    turnR();
+                    parking(0);
+                }
+                break;
+            case 6:
+                turnR();
+                turnR();
+                turnR();
+                release(35);
+                turnR();
+                turnR();
+                parking(260);
+                break;
+            case 7:
+                turnL();
+                turnL();
+                release(325);
+                jumpCircle();
+                turnL();
+                jumpCircle();
+                if(blocks[5] == 3) release(325);
+                turnL();
+                if(blocks[2] == 2) {
+                    release(325);
+                } else {
+                    release(35);
+                }
+                jumpCircle();
+                parking(0);
+                break;
+            case 8:
+                turnL();
+                turnL();
+                jumpCircle();
+                release(325);
+                turnL();
+                jumpCircle();
+                if(blocks[5] == 3) release(325);
+                turnL();
+                if(blocks[2] == 2) {
+                    release(325);
+                } else {
+                    release(35);
+                }
+                jumpCircle();
+                parking(0);
+                break;
+        }
+    } else if(blocks[5] == 4) {
+        jumpCircle(); // 5位置の黒捕獲(正面から)
+        switch(number) {
+        case 1:
+            turnR();
+            jumpCircle();
+            turnL();
+            release(325);
+            if(blocks[0] == 2) {
+                jumpCircle();
+                turnL();
+                release(325);
+                parking(80);
+            } else {
+                turnL();
+                release(35);
+                turnR();
+                parking(0);
+            }
+            break;
+        case 2:
+            turnR();
+            release(325);
+            if(blocks[2] == 0 || blocks[2]) {
+                turnL();
+                if(blocks[2] == 0) {
+                    release(35);
+                } else {
+                    release(325);
+                }   
+                jumpCircle();
+                parking(0);
+            } else {
+                jumpCircle();
+                turnL();
+                release(325);
+                jumpCircle();
+                turnL();
+                release(325);
+                parking(80);
+            }
+            break;
+        case 3:
+            turnR();
+            release(35);
+            if(blocks[2] == 0 || blocks[2]) {
+                turnL();
+                if(blocks[2] == 0) {
+                    release(35);
+                } else {
+                    release(325);
+                }
+                jumpCircle();
+                parking(0);
+            } else {
+                jumpCircle();
+                turnL();
+                release(325);
+                jumpCircle();
+                turnL();
+                release(325);
+                parking(80);
+            }
+            break;
+        case 4:
+            jumpCircle();
+            release(35);
+            if(blocks[2] == 0 || blocks[2] == 3) {
+                turnR();
+                if(blocks[2] == 0) {
+                    release(325);
+                } else {
+                    release(35);
+                }
+                turnL();
+                parking(0);
+            } else {
+                turnL();
+                turnL();
+                release(325);
+                jumpCircle();
+                turnL();
+                release(325);
+                jumpCircle();
+                if(blocks[3] == 2){
+                    release(325);
+                    turnL();
+                } else {
+                    turnL();
+                    release(35);
+                }
+                jumpCircle();
+                release(325);
+                jumpCircle();
+                parking(0);
+            }
+            break;
+        case 5:
+            jumpCircle();
+            turnR();
+            turnR();
+            release(35);
+            if(blocks[1] == 0 || blocks[2] == 2) {
+                turnL();
+                turnL();
+                release(325);
+                turnL();
+                release(35);
+                turnR();
+                parking(0);
+            }
+            break;
+        case 6:
+            jumpCircle();
+            release(325);
+            if(blocks[2] == 0 || blocks[2] == 3) {
+                turnR();
+                if(blocks[2] == 0) {
+                    release(325);
+                } else {
+                    release(35);
+                }
+                turnL();
+                parking(0);
+            } else {
+                turnL();
+                turnL();
+                release(325);
+                jumpCircle();
+                turnL();
+                release(325);
+                jumpCircle();
+                if(blocks[3] == 2){
+                    release(325);
+                    turnL();
+                } else {
+                    turnL();
+                    release(35);
+                }
+                jumpCircle();
+                release(325);
+                jumpCircle();
+                parking(0);
+            }
+            break;
+        case 7:
+            release(325);
+            jumpCircle();
+            if(blocks[2] == 0 || blocks[2] == 3) {
+                turnR();
+                if(blocks[2] == 0) {
+                    release(325);
+                } else {
+                    release(35);
+                }
+                turnL();
+                parking(0);
+            } else {
+                turnL();
+                turnL();
+                release(325);
+                jumpCircle();
+                turnL();
+                release(325);
+                jumpCircle();
+                if(blocks[3] == 2){
+                    release(325);
+                    turnL();
+                } else {
+                    turnL();
+                    release(35);
+                }
+                jumpCircle();
+                release(325);
+                jumpCircle();
+                parking(0);
+            }
+            break;
+        case 8:
+            turnR();
+            turnR();
+            turnR();
+            release(35);
+            jumpCircle();
+            turnR();
+            release(35);
+            jumpCircle();
+            release(35);
+            if(blocks[4] == 3 || blocks[4] == 0) {
+                jumpCircle();
+                turnR();
+                if(blocks[4] == 3) {
+                    release(35);
+                    jumpCircle();
+                    parking(260);
+                } else {
+                    jumpCircle();
+                    release(35);
+                    parking(260);
+                }
+            } else {
+                turnR();
+                jumpCircle();
+                if(blocks[2] == 0) {
+                    release(325);
+                } else {
+                    release(35);
+                }
+                turnL();
+                parking(0);
+            }
+            break;
+        }
+    } else if(blocks[6] == 4) {
+        turnR();
+        if(blocks[3] == 2) {
+            release(325);
+            turnL();
+        } else {
+            turnL();
+            release(35);
+        } 
+        jumpCircle();
+        if(blocks[2] == 2) {
+            release(325);
+        } else {
+            release(35);
+        }
+        turnL();
+        turnL();
+        if(blocks[5] == 1) {
+            release(325);
+        } else {
+            release(35);
+        }
+        jumpCircle();
+        turnR();
+        turnR();
+        release(35);
+        jumpCircle(); // 6位置の黒部録捕獲(正面から)
+        switch(number) {
+            case 1:
+                turnR();
+                jumpCircle();
+                release(325);
+                turnL();
+                parking(0);
+                break;
+            case 2:
+                turnR();
+                jumpCircle();
+                release(35);
+                turnL();
+                parking(0);
+                break;
+            case 3:
+                turnR();
+                jumpCircle();
+                turnR();
+                release(325);
+                turnR();
+                turnR();
+                turnR();
+                turnL();
+                parking(0);
+                break;
+            case 4:
+                turnR();
+                release(325);
+                if(blocks[4] == 3) {
+                    turnL();
+                    turnR();
+                    release(35);
+                    parking(260);
+                } else {
+                    jumpCircle();
+                    turnL();
+                    parking(0);
+                }
+                break;
+            case 5:
+                turnR();
+                turnR();
+                release(325);
+                turnL();
+                turnL();
+                jumpCircle();
+                parking(0);
+                break;
+            case 6:
+                release(35);
+                if(blocks[4] == 2 || blocks[4] == 0) {
+                    jumpCircle();
+                    turnR();
+                    if(blocks[4] == 2) {
+                        release(35);
+                        jumpCircle();
+                    } else {
+                        jumpCircle();
+                        release(35);
+                    } 
+                    parking(260);
+                } else {
+                    turnR();
+                    jumpCircle();
+                    turnL();
+                    parking(0);
+                }
+                break;
+            case 7:
+                turnR();
+                jumpCircle();
+                turnR();
+                turnR();
+                release(35);
+                turnR();
+                turnR();
+                turnL();
+                parking(0);
+                break;
+            case 8:
+                turnR();
+                turnR();
+                release(35);
+                jumpCircle();
+                turnL();
+                turnL();
+                jumpCircle();
+                jumpCircle();
+                parking(0);
+                break;
+        }
+    } else if(blocks[7] == 4) {
+        turnR();
+        if(blocks[3] == 2) {
+            release(325);
+            turnL();
+        } else {
+            turnL();
+            release(35);
+        } 
+        jumpCircle();
+        if(blocks[2] == 2) {
+            release(325);
+        } else {
+            release(35);
+        }
+        turnL();
+        turnL();
+        if(blocks[5] == 1) {
+            release(325);
+        } else {
+            release(35);
+        }
+        jumpCircle();
+        turnR(); // 7位置の黒部録捕獲(右から)
+        switch(number) {
+            case 1:
+                turnR();
+                turnR();
+                jumpCircle();
+                turnL();
+                release(35);
+                jumpCircle();
+                parking(0);
+                break;
+            case 2:
+                turnR();
+                turnR();
+                jumpCircle();
+                release(325);
+                turnL();
+                jumpCircle();
+                parking(0);
+                break;
+            case 3:
+                turnR();
+                turnR();
+                jumpCircle();
+                release(35);
+                turnL();
+                jumpCircle();
+                parking(0);
+                break;
+            case 4:
+                turnR();
+                turnR();
+                turnL();
+                release(35);
+                if(blocks[4] == 0) {
+                    jumpCircle();
+                    turnR();
+                    release(325);
+                    parking(260);
+                } else {
+                    turnR();
+                    turnL();
+                    parking(0);
+                }
+                break;
+            case 5:
+                turnR();
+                turnR();
+                release(35);
+                if(blocks[4] == 0) {
+                    turnL();
+                    jumpCircle();
+                    turnR();
+                    release(325);
+                    parking(260);
+                } else if(blocks[1] == 0 || blocks[0] == 2) {
+                    jumpCircle();
+                    jumpCircle();
+                    turnL();
+                    release(325);
+                    jumpCircle();
+                    turnL();
+                    release(325);
+                    parking(80);
+                } else {
+                    jumpCircle();
+                    turnL();
+                    jumpCircle();
+                    parking(0);
+                }
+                break;
+            case 6:
+                turnR();
+                turnR();
+                turnL();
+                release(325);
+                if(blocks[4] == 0) {
+                    jumpCircle();
+                    turnR();
+                    release(325);
+                    parking(260);
+                } else {
+                    turnR();
+                    turnL();
+                    parking(0);
+                }
+                break;
+            case 7:
+                turnR();
+                release(35);
+                jumpCircle();
+                if(blocks[6] == 1) {
+                    release(35);
+                    turnR();
+                    jumpCircle();
+                } else if(blocks[6] == 2) {
+                    turnR();
+                    release(325);
+                    jumpCircle();
+                } else {
+                    turnR();
+                    jumpCircle();
+                    if(blocks[6] == 3) {
+                        release(325);
+                    } else {
+                        release(35);
+                    }
+                turnL();
+                parking(0);
+                }
+                break;
+            case 8:
+                turnR();
+                turnR();
+                jumpCircle();
+                turnR();
+                turnR();
+                release(35);
+                turnR();
+                if(blocks[4] == 0) {
+                    jumpCircle();
+                    jumpCircle();
+                    turnR();
+                    release(325);
+                    parking(260);
+                } else if(blocks[1] == 0 || blocks[0] == 2) {
+                    turnR();
+                    jumpCircle();
+                    turnL();
+                    release(325);
+                    jumpCircle();
+                    turnL();
+                    release(325);
+                    parking(80);
+                } else {
+                    turnR();
+                    turnL();
+                    jumpCircle();
+                    parking(0);
+                }
+                break;
+        }
+    } else {
+        turnR();
+        turnL();
+        jumpCircle();
+        jumpCircle();
+        parking(0);
+    }
 }
