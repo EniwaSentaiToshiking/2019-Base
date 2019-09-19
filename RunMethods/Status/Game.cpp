@@ -47,10 +47,10 @@ void Game::jumpCircle(){ // サークルを直進で乗り超える
 
 void Game::turnR(){ // 右90度旋回
     if (edge_line == Line_R) {
-        patterns.push_back(new RunPattern(TURNING, 20, DIRECTION, 107, DIRECTION_RIGHT));
+        patterns.push_back(new RunPattern(TURNING, 20, DIRECTION, 104, DIRECTION_RIGHT));
         edge_line = Line_R;
     } else {
-        patterns.push_back(new RunPattern(TURNING, 20, DIRECTION, 95, DIRECTION_RIGHT));
+        patterns.push_back(new RunPattern(TURNING, 20, DIRECTION, 92, DIRECTION_RIGHT));
         edge_line = Line_R;
     }
     straight();
@@ -58,10 +58,10 @@ void Game::turnR(){ // 右90度旋回
 
 void Game::turnL(){ // 左90度旋回
     if (edge_line == Line_R) {
-        patterns.push_back(new RunPattern(TURNING, 20, DIRECTION, 95, DIRECTION_LEFT));
+        patterns.push_back(new RunPattern(TURNING, 20, DIRECTION, 92, DIRECTION_LEFT));
         edge_line = Line_L;
     } else {
-        patterns.push_back(new RunPattern(TURNING, 20, DIRECTION, 107, DIRECTION_LEFT));
+        patterns.push_back(new RunPattern(TURNING, 20, DIRECTION, 104, DIRECTION_LEFT));
         edge_line = Line_L;
     }
     straight();
@@ -83,8 +83,8 @@ void Game::release(int direction){ // ブロックのリリース
         patterns.push_back(new RunPattern(STRAIGHT, 15, DISTANCE, 10));
         patterns.push_back(new RunPattern(SPIN, 15, DIRECTION, direction, DIRECTION_RIGHT));
         patterns.push_back(new RunPattern(ARM, 180, 100));
-        patterns.push_back(new RunPattern(SPIN, 15, DIRECTION, direction + 10, DIRECTION_LEFT));
-        patterns.push_back(new RunPattern(STRAIGHT, -15, DISTANCE, 8));
+        patterns.push_back(new RunPattern(SPIN, 15, DIRECTION, direction + 5, DIRECTION_LEFT));
+        patterns.push_back(new RunPattern(STRAIGHT, -15, DISTANCE, 9));
     } else {
         patterns.push_back(new RunPattern(STRAIGHT, 15, DISTANCE, 10));
         patterns.push_back(new RunPattern(SPIN, 15, DIRECTION, 360 - direction, DIRECTION_LEFT));
@@ -1499,9 +1499,9 @@ void Game::createCourseR(){
                     } else {
                         release(35);
                     }
+                }
                 turnL();
                 parking(0);
-                }
                 break;
             case 8:
                 turnR();
