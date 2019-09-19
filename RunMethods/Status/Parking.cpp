@@ -28,7 +28,7 @@ void Parking::createCourseL(){
     patterns.push_back(new RunPattern(LINE_TRACE, 15, DISTANCE, 10, 1.3, 0.0, 0.02, 40, RIGHT));
 
     patterns.push_back(new RunPattern(SPIN, 40, DIRECTION, 65, DIRECTION_LEFT));
-    patterns.push_back(new RunPattern(STRAIGHT, 30, DISTANCE, 25));
+    patterns.push_back(new RunPattern(STRAIGHT, 30, DISTANCE, 27));
     patterns.push_back(new RunPattern(SPIN, 40, DIRECTION, 65, DIRECTION_LEFT));
 }
 
