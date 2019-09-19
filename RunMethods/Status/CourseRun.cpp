@@ -54,7 +54,7 @@ void CourseRun::createCourseL(){
     patterns.push_back(new RunPattern(LINE_TRACE, 55, DISTANCE, 10, 0.25, 0.03, 0.03, 60));
     patterns.push_back(new RunPattern(LINE_TRACE, 55, DISTANCE, 30, 0.45, 0.01, 0.035, 60));
 
-    patterns.push_back(new RunPattern(LINE_TRACE, 65, DISTANCE, 150, 0.4, 0.01, 0.04, 60)); // 最後の円
+    patterns.push_back(new RunPattern(LINE_TRACE, 55, DISTANCE, 150, 0.4, 0.01, 0.04, 60)); // 最後の円
     patterns.push_back(new RunPattern(LINE_TRACE, 65, DISTANCE, 30, 0.25, 0.03, 0.03, 60));
 
     patterns.push_back(new RunPattern(LINE_TRACE, 35, DISTANCE, 80, 0.5, 0.0, 0.03, 60));
