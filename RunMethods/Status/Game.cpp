@@ -118,12 +118,176 @@ void Game::createCourseL(){
     int blocks[8]={block.cross1, block.cross2, block.cross3, block.cross4, block.cross5, block.cross6, block.cross7, block.cross8};
     int bonus[2]={block.bonus_pos, block.bonus_color};
     int number = block.number;
-
-    turnL();
-    turnR();
-    jumpCircle();
-    jumpCircle();
-    parking(0);
+    
+    if(blocks[4] == 4 && (number == 1 || number == 4 || number == 6 || number == 7)) {
+        if(number == 1) {
+            turnL();
+            release(35);
+            turnR();
+            if(blocks[2] == 3) {
+                release(325);
+                jumpCircle();
+            } else if(blocks[2] == 0) {
+                jumpCircle();
+                release(325);
+            } else {
+                jumpCircle();
+                release(35);
+            }
+            jumpCircle();
+            release(325);
+            parking(0);
+        } else {
+            if(number == 4) {
+                release(325);
+                jumpCircle();
+            } else if(number == 6) {
+                release(35);
+                jumpCircle();
+            } else {
+                jumpCircle();
+                release(35);
+            }
+            jumpCircle();
+            if(blocks[5] == 0) {
+                turnL();
+                release(35);
+            } else if(blocks[5] == 2) {
+                release(325);
+                turnL();
+            } else {
+                release(35);
+                turnL();
+            }
+            turnR();
+            release(325);
+            parking(0);
+        }
+    } else if(blocks[2] == 4 && (number == 1 || number == 2 || number == 3 || number == 5)) {
+        if(blocks[4] == 1) {
+            release(325);
+            jumpCircle();
+        } else if(blocks[4] == 3) {
+            release(35);
+            jumpCircle();
+        } else {
+            jumpCircle();
+            release(35);
+        }
+        turnL();
+        if(number == 1) {
+            release(325);
+            turnR();
+        } else if(number ==2) {
+            release(35);
+            turnR();
+        } else if(number == 3) {
+            turnR();
+            release(325);
+        } else {
+            turnR();
+            release(35);
+        }
+        jumpCircle();
+        release(325);
+        parking(0);
+    } else if(blocks[5] == 4 && (number == 2 || number == 3 || number == 5 || number == 8)) {
+        if(blocks[4] == 1) {
+            release(325);
+            jumpCircle();
+        } else if(blocks[4] == 3) {
+            release(35);
+            jumpCircle();
+        } else {
+            jumpCircle();
+            release(35);
+        }
+        jumpCircle();
+        if(number == 5) {
+            release(325);
+            turnL();
+        } else if(number == 3) {
+            turnL();
+            release(35);
+        } else {
+            release(35);
+            turnL();
+        }
+        turnR();
+        release(325);
+        parking(0);
+    } else if(blocks[4] != 2) {
+        if(blocks[4] == 1) {
+            release(325);
+            jumpCircle();
+        } else if(blocks[4] == 3) {
+            release(35);
+            jumpCircle();
+        } else {
+            jumpCircle();
+            release(35);
+        }
+        if(blocks[5] == 0 || blocks[5] == 2 || blocks[5] == 1 || blocks[5] == 3) {
+            jumpCircle();
+            if(blocks[5] == 0) {
+                turnL();
+                release(35);
+                turnR();
+            } else if(blocks[5] == 3) {
+                turnL();
+                release(325);
+                turnR();
+            } else if(blocks[5] == 2) {
+                release(325);
+                turnL();
+                turnR();
+            } else {
+                release(35);
+                turnL();
+                turnR();
+            }
+            release(325);
+            parking(0);
+        } else {
+            turnL();
+            if(blocks[2] == 2) {
+                release(325);
+                turnR();
+            } else if(blocks[2] == 0) {
+                turnR();
+                release(325);
+            } else {
+                release(35);
+                turnR();
+            }
+            jumpCircle();
+            release(325);
+            parking(0);
+        }
+    } else if(blocks[4] == 2) {
+        turnL();
+        release(35);
+        turnR();
+        if(blocks[2] ==3) {
+            release(325);
+            jumpCircle();
+        } else if(blocks[2] == 0) {
+            jumpCircle();
+            release(325);
+        } else {
+            jumpCircle();
+            release(35);
+        }
+        jumpCircle();
+        release(325);
+        parking(0);
+    } else {
+        turnL();
+        turnR();
+        jumpCircle();
+        jumpCircle();
+        parking(0);
+    }
 }
 
 void Game::createCourseR(){
