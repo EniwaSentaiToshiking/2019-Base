@@ -113,15 +113,15 @@ void get_cross(int cross_pos[8], char all_pos[256])
 {
     for (int i = 1; i < 9; i++)
     {
-        cross_pos[i] = all_pos[i] - 48;
+        cross_pos[i - 1] = all_pos[i] - 48;
     }
 }
-
+​
 void get_bonus(int bonus_pos[2], char all_pos[256])
 {
     for (int i = 9; i < 11; i++)
     {
-        bonus_pos[i] = all_pos[i] - 48;
+        bonus_pos[i - 9] = all_pos[i] - 48;
     }
 }
 

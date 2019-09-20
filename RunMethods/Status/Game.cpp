@@ -296,6 +296,13 @@ void Game::createCourseR(){
     int bonus[2]={block.bonus_pos, block.bonus_color};
     int number = block.number;
 
+    char tmp[256];
+	for (int i = 0; i < 8; i ++){
+		snprintf(tmp, 255, "%s%d", tmp, blocks[i]);
+	}
+	
+	ev3_lcd_draw_string(tmp, 0, 40);
+
     if (blocks[0] == 4) {
         if (blocks[3] == 2 || blocks[3] == 3) {
             turnR();
@@ -309,7 +316,7 @@ void Game::createCourseR(){
                 jumpCircle();
             }
             // 2の色正面捕獲
-            if (blocks[2] == 0 && bonus[0] != ) {
+            if (blocks[2] == 0 && bonus[0] != 1) {
                 release(35);
                 turnL();
             } else if(blocks[2] == 2) {
@@ -322,7 +329,7 @@ void Game::createCourseR(){
                 turnL();
                 release(325);
             }
-            turnL(); // 5の黒後ろ捕獲
+            turnL(); // 5の色後ろ捕獲
             if(blocks[5] == 1) {
                 release(325);
             } else {
