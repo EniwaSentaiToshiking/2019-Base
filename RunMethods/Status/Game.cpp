@@ -304,51 +304,49 @@ void Game::createCourseR(){
 	ev3_lcd_draw_string(tmp, 0, 40);
 
     if (blocks[0] == 4) {
-        if (blocks[3] == 2 || blocks[3] == 3) {
-            turnR();
-            if(blocks[3] == 2) {
-                release(325);
-                turnL();
-                jumpCircle();
-            } else {
-                turnL();
-                release(35);
-                jumpCircle();
-            }
-            // 2の色正面捕獲
-            if (blocks[2] == 0 && bonus[0] != 1) {
-                release(35);
-                turnL();
-            } else if(blocks[2] == 2) {
-                release(325);
-                turnL();
-            } else if(blocks[2] == 1) {
-                turnL();
-                release(35);
-            } else {
-                turnL();
-                release(325);
-            }
-            turnL(); // 5の色後ろ捕獲
-            if(blocks[5] == 1) {
-                release(325);
-            } else {
-                release(35);
-            }
-            turnR();
-            turnR();
+        turnR();
+        if(blocks[3] == 2) {
+            release(325);
+            turnL();
+            jumpCircle();
+        } else {
+            turnL();
             release(35);
             jumpCircle();
-            turnR();
-            if(blocks[4] == 0) {
-                jumpCircle();
-                release(35);
-            } else {
-                release(35);
-                jumpCircle();
-            }
-            jumpCircle(); // 0位置黒左捕獲
-        }   
+        }
+        // 2の色正面捕獲
+        if (blocks[2] == 0 && bonus[0] != 1) {
+            release(35);
+            turnL();
+        } else if(blocks[2] == 2) {
+            release(325);
+            turnL();
+        } else if(blocks[2] == 1) {
+            turnL();
+            release(35);
+        } else {
+            turnL();
+            release(325);
+        }
+        turnL(); // 5の色後ろ捕獲
+        if(blocks[5] == 1) {
+            release(325);
+        } else {
+         release(35);
+        }
+        turnR();
+        turnR();
+        release(35);
+        jumpCircle();
+        turnR();
+        if(blocks[4] == 0) {
+            jumpCircle();
+            release(35);
+        } else {
+            release(35);
+            jumpCircle();
+        }
+        jumpCircle(); // 0位置黒左捕獲          
         // ボーナスナンバーによる場合分け
         switch (number) {
             case 1:
@@ -430,57 +428,54 @@ void Game::createCourseR(){
                 break;
         }
     } else if(blocks[1] == 4) {
-        if (blocks[3] == 2) {
-            turnR();
-            release(135);
+        turnR();
+        if(blocks[3] == 2) {
+            release(325);
             turnL();
-            turnL();
-            if (blocks[5] == 0) {
-                release(35);
-                turnR();
-            } else {
-                turnR();
-                release(325);
-            }
             jumpCircle();
-            turnR();
-            release(35);
-            jumpCircle(); 
-            turnR();
-            release(35);
-            jumpCircle(); // 1位置の黒を捕獲
-        } else if(blocks[7] == 0 || blocks[6] == 1) {
-            turnL();
-            turnR();
-            release(35);
-            jumpCircle();
-            release(35);
-            jumpCircle();
-            turnR();
-            jumpCircle();
-            release(35);
-            jumpCircle();
-            turnR();
-            release(35);
-            jumpCircle(); // 1位置の黒を捕獲
         } else {
-            jumpCircle();
-            if(blocks[5] == 0) {
-                release(325);
-                jumpCircle();
-            } else {
-                jumpCircle();
-                release(325);
-            }
-            jumpCircle();
-            turnR();
+            turnL();
             release(35);
-            jumpCircle(); 
-            turnR();
-            release(35);
-            jumpCircle(); // 1位置の黒を捕獲
+            jumpCircle();
         }
-        switch(number) {
+        // 2の色正面捕獲
+        if (blocks[2] == 0 && bonus[0] != 1) {
+            release(35);
+            turnL();
+        } else if(blocks[2] == 2) {
+            release(325);
+            turnL();
+        } else if(blocks[2] == 1) {
+            turnL();
+            release(35);
+        } else {
+            turnL();
+            release(325);
+        }
+        turnL(); // 5の色後ろ捕獲
+        if(blocks[5] == 1) {
+            release(325);
+        } else {
+         release(35);
+        }
+        turnR();
+        turnR();
+        release(35);
+        jumpCircle();
+        turnR();
+        if(blocks[4] == 0) {
+            jumpCircle();
+            release(35);
+        } else {
+            release(35);
+            jumpCircle();
+        }
+        jumpCircle(); // 0位置色左捕獲
+        turnR();
+        release(35);
+        jumpCircle(); // 1位置黒後捕獲
+        // ボーナスナンバーによる場合分け
+        switch (number) {
             case 1:
                 turnR();
                 turnR();
@@ -489,54 +484,32 @@ void Game::createCourseR(){
                 parking(0);
                 break;
             case 2:
+                turnR();
                 jumpCircle();
                 turnR();
                 turnR();
                 release(35);
-                jumpCircle();
-                if(blocks[2] == 2) {
-                    release(325);
-                } else {
-                    release(35);
-                }
-                jumpCircle();
+                turnL();
                 parking(0);
                 break;
             case 3:
                 release(35);
                 turnR();
                 turnR();
-                if(blocks[2] == 2) {
-                    release(325);
-                } else {
-                    release(35);
-                }
                 jumpCircle();
                 parking(0);
                 break;
             case 4:
                 turnR();
+                turnR();
+                release(325);
                 jumpCircle();
-                turnR();
-                release(35);
-                turnR();
-                if(blocks[2] == 0) {
-                    release(325);
-                } else {
-                    release(35);
-                }               
-                turnL();
                 parking(0);
                 break;
             case 5:
                 turnR();
                 release(325);
                 turnR();
-                if(blocks[2] == 2) {
-                    release(325);
-                } else {
-                    release(35);
-                }
                 jumpCircle();
                 parking(0);
                 break;
@@ -546,11 +519,6 @@ void Game::createCourseR(){
                 turnR();
                 release(325);
                 turnR();
-                if(blocks[2] == 0) {
-                    release(325);
-                } else {
-                    release(35);
-                }  
                 turnL();
                 parking(0);
                 break;
@@ -560,11 +528,6 @@ void Game::createCourseR(){
                 release(35);
                 turnR();
                 turnR();
-                if(blocks[2] == 0) {
-                    release(325);
-                } else {
-                    release(35);
-                } 
                 turnL();
                 parking(0);
                 break;
@@ -574,11 +537,6 @@ void Game::createCourseR(){
                 release(325);
                 turnR();
                 turnR();
-                if(blocks[2] == 0) {
-                    release(325);
-                } else {
-                    release(35);
-                } 
                 turnL();
                 parking(0);
                 break;
