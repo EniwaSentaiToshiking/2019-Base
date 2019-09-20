@@ -89,7 +89,7 @@ void Game::release(int direction){ // ブロックのリリース
         patterns.push_back(new RunPattern(STRAIGHT, 15, DISTANCE, 10));
         patterns.push_back(new RunPattern(SPIN, 15, DIRECTION, 360 - direction, DIRECTION_LEFT));
         patterns.push_back(new RunPattern(ARM, 180, 100));
-        patterns.push_back(new RunPattern(SPIN, 15, DIRECTION, 360 - direction + 8, DIRECTION_RIGHT));
+        patterns.push_back(new RunPattern(SPIN, 15, DIRECTION, 360 - direction + 5, DIRECTION_RIGHT));
         patterns.push_back(new RunPattern(STRAIGHT, -15, DISTANCE, 8));
     }
 }
@@ -297,54 +297,60 @@ void Game::createCourseR(){
     int number = block.number;
 
     if (blocks[0] == 4) {
-        if (blocks[3] == 2) {
+        if (blocks[3] == 2 || blocks[3] == 3) {
             turnR();
-            release(135);
-            turnL();
-            turnL();
-            if (blocks[5] == 0) {
+            if(blocks[3] == 2) {
+                release(325);
+                turnL();
+                jumpCircle();
+            } else {
+                turnL();
                 release(35);
-                turnR();
+                jumpCircle();
+            }
+            // 2の色正面捕獲
+            if (blocks[2] == 0 && bonus[0] != ) {
+                release(35);
+                turnL();
+            } else if(blocks[2] == 2) {
+                release(325);
+                turnL();
+            } else if(blocks[2] == 1) {
+                turnL();
+                release(35);
             } else {
-                turnR();
+                turnL();
                 release(325);
             }
-            jumpCircle();
-            turnR();
-            release(35);
-            jumpCircle(); // 0位置の黒を捕獲
-        } else if(blocks[7] == 0 || blocks[6] == 1) {
-            turnL();
-            turnR();
-            release(35);
-            jumpCircle();
-            release(35);
-            jumpCircle();
-            turnR();
-            jumpCircle();
-            release(35);
-            jumpCircle(); // 0位置の黒を捕獲
-        } else {
-            jumpCircle();
-            if(blocks[5] == 0) {
+            turnL(); // 5の黒後ろ捕獲
+            if(blocks[5] == 1) {
                 release(325);
-                jumpCircle();
             } else {
-                jumpCircle();
-                release(325);
+                release(35);
             }
-            jumpCircle();
+            turnR();
             turnR();
             release(35);
-            jumpCircle(); // 0位置の黒を捕獲
-        }
+            jumpCircle();
+            turnR();
+            if(blocks[4] == 0) {
+                jumpCircle();
+                release(35);
+            } else {
+                release(35);
+                jumpCircle();
+            }
+            jumpCircle(); // 0位置黒左捕獲
+        }   
         // ボーナスナンバーによる場合分け
         switch (number) {
             case 1:
                 turnR();
+                turnR();
                 jumpCircle();
-                turnR();
-                turnR();
+                turnL();
+                turnL();
+                turnL();
                 release(35);
                 jumpCircle();
                 parking(0);
@@ -363,7 +369,6 @@ void Game::createCourseR(){
                 release(35);
                 turnR();
                 turnR();
-                release(325);
                 jumpCircle();
                 parking(0);
                 break;
@@ -376,12 +381,13 @@ void Game::createCourseR(){
                 break;
             case 5:
                 turnR();
-                jumpCircle();
                 turnR();
-                release(325);
+                turnL();
+                release(35);
                 turnR();
-                release(325);
-                jumpCircle();
+                turnR();
+                turnR();
+                turnL();
                 parking(0);
                 break;
             case 6:
@@ -404,13 +410,15 @@ void Game::createCourseR(){
                 break;
             case 8:
                 turnR();
-                jumpCircle();
                 turnR();
                 jumpCircle();
+                turnL();
                 release(35);
                 turnR();
+                turnR();
                 jumpCircle();
                 turnR();
+                jumpCircle();
                 parking(260);
                 break;
         }
