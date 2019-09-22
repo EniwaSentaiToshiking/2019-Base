@@ -117,7 +117,7 @@ void Game::createCourseL(){
     Block &block = Block::singleton();
     int blocks[8]={block.cross1, block.cross2, block.cross3, block.cross4, block.cross5, block.cross6, block.cross7, block.cross8};
     int bonus[2]={block.bonus_pos, block.bonus_color};
-    int number = block.number;
+    int number = block.number - 48;
 
     char tmp[256];
 	for (int i = 0; i < 8; i ++){
@@ -307,7 +307,7 @@ void Game::createCourseR(){
     Block &block = Block::singleton();
     int blocks[8]={block.cross1, block.cross2, block.cross3, block.cross4, block.cross5, block.cross6, block.cross7, block.cross8};
     int bonus[2]={block.bonus_pos, block.bonus_color};
-    int number = block.number;
+    int number = block.number - 48;
 
     char tmp[256];
 	for (int i = 0; i < 8; i ++){

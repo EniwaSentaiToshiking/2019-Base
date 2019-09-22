@@ -127,7 +127,7 @@ void get_bonus(int bonus_pos[2], char all_pos[256])
 
 void bt_task(intptr_t unused)
 {
-    char tmp[15];
+    char tmp[256];
     int count = 0;
 
     while (1)

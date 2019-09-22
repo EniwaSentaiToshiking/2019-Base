@@ -22,7 +22,7 @@ public:
   int bonus_pos = 1;
   int bonus_color = 1;
 
-  int number = 1;
+  int number = 1 + 48;
 
   // デフォルトコンストラクタ以外でインスタンスを構築したい場合、createInstance()を上書きする
   /*

@@ -93,5 +93,5 @@ void CourseRun::createCourseR(){
     patterns.push_back(new RunPattern(LINE_TRACE, 35, DISTANCE, 80, 0.5, 0.0, 0.03, 60, RIGHT));
     patterns.push_back(new RunPattern(LINE_TRACE, 35, COLOR, 2, 0.5, 0.1, 0.03, 30, RIGHT));
     patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 30, 0.5, 0.1, 0.03, 40, RIGHT));
-    patterns.push_back(new RunPattern(LINE_TRACE, 25, COLOR, 8, 0.5, 0.1, 0.03, 60, RIGHT)); // ゲームエリアの黄色
+    patterns.push_back(new RunPattern(LINE_TRACE, 25, COLOR, 8, 0.5, 0.1, 0.03, 80, RIGHT)); // ゲームエリアの黄色
 }
