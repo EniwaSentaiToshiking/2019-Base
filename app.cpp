@@ -31,7 +31,7 @@ int cross[8];
 int bonus[2];
 int number = 8;
 
-const Course course = R;
+const Course course = L;
 
 /* メインタスク */
 void main_task(intptr_t unused)
@@ -116,7 +116,7 @@ void get_cross(int cross_pos[8], char all_pos[256])
         cross_pos[i - 1] = all_pos[i] - 48;
     }
 }
-​
+
 void get_bonus(int bonus_pos[2], char all_pos[256])
 {
     for (int i = 9; i < 11; i++)
@@ -127,7 +127,7 @@ void get_bonus(int bonus_pos[2], char all_pos[256])
 
 void bt_task(intptr_t unused)
 {
-    char tmp[256];
+    char tmp[15];
     int count = 0;
 
     while (1)

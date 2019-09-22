@@ -118,6 +118,19 @@ void Game::createCourseL(){
     int blocks[8]={block.cross1, block.cross2, block.cross3, block.cross4, block.cross5, block.cross6, block.cross7, block.cross8};
     int bonus[2]={block.bonus_pos, block.bonus_color};
     int number = block.number;
+
+    char tmp[256];
+	for (int i = 0; i < 8; i ++){
+		snprintf(tmp, 255, "%s%d", tmp, blocks[i]);
+	}
+
+	for (int i = 0; i < 2; i ++){
+		snprintf(tmp, 255, "%s%d", tmp, bonus[i]);
+	}	
+
+	snprintf(tmp, 255, "%s%d", tmp, number);
+	
+	ev3_lcd_draw_string(tmp, 0, 40);
     
     if(blocks[4] == 4 && (number == 1 || number == 4 || number == 6 || number == 7)) {
         if(number == 1) {
@@ -300,6 +313,12 @@ void Game::createCourseR(){
 	for (int i = 0; i < 8; i ++){
 		snprintf(tmp, 255, "%s%d", tmp, blocks[i]);
 	}
+
+	for (int i = 0; i < 2; i ++){
+		snprintf(tmp, 255, "%s%d", tmp, bonus[i]);
+	}	
+
+	snprintf(tmp, 255, "%s%d", tmp, number);
 	
 	ev3_lcd_draw_string(tmp, 0, 40);
 
