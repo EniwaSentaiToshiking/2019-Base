@@ -2,30 +2,18 @@ mkfile_path := $(dir $(lastword $(MAKEFILE_LIST)))
 
 APPL_COBJS +=
 
+
 APPL_CXXOBJS += \
-ObjectDetecter.o \
-    GrayLineDetecter.o \
-    PointDetecter.o \
     DistanceDetecter.o \
-    DirectionDetecter.o \
-    ColorDetecter.o \
-    BlackLineDetecter.o \
-    BrightnessDetecter.o \
-    ClockDetecter.o \
-    AdaptiveDirectionDetecter.o \
     SonarSensorDriver.o \
     TouchSensorDriver.o \
     ColorSensorDriver.o \
     WheelMotorDriver.o \
-    ArmMotorDriver.o \
     TailMotorDriver.o \
     RunCommander.o \
-    ArmCommander.o \
-    TailCommander.o \
     WheelInfo.o \
     Localization.o \
     CourceMonitor.o \
-    Lot.o \
     SpeedCal.o \
     UI.o \
     PID.o \
@@ -34,15 +22,9 @@ ObjectDetecter.o \
     Logger.o \
     RunStatus.o \
     CourseRun.o \
-    Parking.o \
     Stop.o \
     RunStyle.o \
     LineTrace.o \
-    Grid.o \
-    Straight.o \
-    Turning.o \
-    Spin.o \
-    Clothoid.o \
     RunPattern.o \
     RunManager.o \
 

@@ -17,13 +17,14 @@ int PIDController::getTurn(PID *pid, unsigned int sensor_val, unsigned int targe
   KI = pid->i;
   KD = pid->d;
 
-  diff[0] = diff[1];
-  diff[1] = sensor_val - target_val;
-  integral += (diff[1] + diff[0]) / 2.0 * DELTA_T;
+  previous_error = current_error;
+  current_error = sensor_val - target_val;
+  integral += current_error * dt;
+  differential = (current_error - previous_error) / dt;
 
-  p = KP * diff[1];
+  p = KP * current_error;
   i = KI * integral;
-  d = KD * (diff[1] - diff[0]) / DELTA_T;
+  d = KD * differential;
 
   return math_limit(p + i + d, absMax);
 }

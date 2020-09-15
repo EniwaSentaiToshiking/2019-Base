@@ -27,11 +27,12 @@ void RunManager::changeStatus(RunState state){
         case COURSE_RUN:
             status = new CourseRun(course);
             break;
-        case PARKING:
-            status = new Parking(course);
-            break;
+        // case PARKING:
+        //     status = new Parking(course);
+        //     break;
         case STOP:
             status = new Stop();
+            printf("STOP");
             break;
     }
 }

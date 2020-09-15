@@ -1,4 +1,4 @@
-#include "Lot.h"
+// #include "Lot.h"
 
 #ifndef DETECTER_H
 #define DETECTER_H
