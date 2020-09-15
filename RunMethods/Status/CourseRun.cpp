@@ -13,8 +13,8 @@ CourseRun::CourseRun(Course course){
 }
 
 CourseRun::~CourseRun(){
-    for_each(lots.begin(), lots.end(), DeleteObject());
-    lots.clear();
+    // for_each(lots.begin(), lots.end(), DeleteObject());
+    // lots.clear();
     ev3_speaker_play_tone(480, 100);
 }
 
@@ -31,8 +31,9 @@ void CourseRun::setNextState(){
 
 // coruseの距離は1000 1050くらいで調整
 void CourseRun::createCourseL(){
-    patterns.push_back(new RunPattern(LINE_TRACE, 50, DISTANCE, 50, 2.0, 0.0, 0.03, 40, RIGHT));
-    // patterns.push_back(new RunPattern(LINE_TRACE, 0, DISTANCE, 20, 0.25, 0.03, 0.03, 60, LEFT));
+    patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 30, 2.0, 0.03, 0.2, 18, RIGHT));
+
+
 
     // patterns.push_back(new RunPattern(LINE_TRACE, 65, DISTANCE, 70, 0.35, 0.01, 0.03, 60));
     // patterns.push_back(new RunPattern(LINE_TRACE, 65, DISTANCE, 70, 0.25, 0.03, 0.03, 60));

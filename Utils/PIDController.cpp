@@ -2,6 +2,7 @@
 
 PIDController::PIDController()
 {
+  // logger = new Logger("hoge.csv");
 }
 
 PIDController::~PIDController()

@@ -1,6 +1,5 @@
 #include "Detecter.h"
 #include "Localization.h"
-#include "Lot.h"
 #include "ev3api.h"
 #include <cstdlib>
 

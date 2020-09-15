@@ -10,7 +10,7 @@ RunCommander::RunCommander(){
 RunCommander::~RunCommander(){
     delete leftMotor;
     delete rightMotor;
-    delete grid;
+    // delete grid;
 }
 
 void RunCommander::steer(int power, int turn){

@@ -4,6 +4,7 @@
 // #define DELTA_T 0.004
 
 #include "PID.h"
+// #include "Logger.h"
 
 class PIDController
 {
@@ -14,6 +15,7 @@ class PIDController
 	double differential = 0;
 	const float absMax = 100;
 	const float dt = 0.004; /* TRACER_TASKのハンドラ周期<sec>と同じ */
+	// Logger *logger;
 
   public:
 	PIDController();

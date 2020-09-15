@@ -5,20 +5,15 @@ APPL_COBJS +=
 
 APPL_CXXOBJS += \
     DistanceDetecter.o \
-    SonarSensorDriver.o \
     TouchSensorDriver.o \
     ColorSensorDriver.o \
     WheelMotorDriver.o \
-    TailMotorDriver.o \
     RunCommander.o \
-    WheelInfo.o \
-    Localization.o \
     CourceMonitor.o \
-    SpeedCal.o \
+    Localization.o \
     UI.o \
     PID.o \
     PIDController.o \
-    Filter.o \
     Logger.o \
     RunStatus.o \
     CourseRun.o \

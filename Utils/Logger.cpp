@@ -12,5 +12,5 @@ Logger::~Logger()
 
 void Logger::logging(float data)
 {
-    fprintf(log_file, "%f\n", data);
+    fprintf(log_file, "%f,\n", data);
 }

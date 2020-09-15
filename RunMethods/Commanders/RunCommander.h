@@ -1,6 +1,6 @@
 #include "WheelMotorDriver.h"
 #include "Steering.h"
-#include "Grid.h"
+// #include "Grid.h"
 
 using namespace ev3api;
 
@@ -13,7 +13,7 @@ private:
     WheelMotorDriver *leftMotor;
     WheelMotorDriver *rightMotor;
     Steering *steering;
-    Grid *grid;
+    // Grid *grid;
 
 public:
     RunCommander();

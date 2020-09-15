@@ -102,15 +102,15 @@ void RunPattern::createDetecter()
 {
     switch (this->detectType)
     {
+        case DISTANCE:
+        this->detecter = new DistanceDetecter(this->threshold);
+        break;
     // case POINT:
     //     this->detecter = new PointDetecter(this->nextLot);
     //     break;
     // case GRAYLINE:
     //     this->detecter = new GrayLineDetecter(this->threshold);
     //     break;
-    case DISTANCE:
-        this->detecter = new DistanceDetecter(this->threshold);
-        break;
     // case DIRECTION:
     //     this->detecter = new DirectionDetecter(this->threshold, this->direction);
     //     break;
@@ -142,6 +142,7 @@ bool RunPattern::run()
     }
 
     int turn = runStyle->getTurnValue();
+    runCommander->steer(this->speed, turn);
     // tailCommander->rotateDefault();
 
     // if (this->pattern == BRAKE)
@@ -162,7 +163,7 @@ bool RunPattern::run()
     // }
     // else
     // {
-    runCommander->steer(this->speed, turn);
+    //     runCommander->steer(this->speed, turn);
     //     armCommander->rotateDefault();
     // }
 

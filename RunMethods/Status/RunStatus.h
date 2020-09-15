@@ -19,8 +19,8 @@ struct DeleteObject
 //走行状態
 enum RunState {
     COURSE_RUN,
-    // PARKING,
     STOP,
+    // PARKING,
 };
 
 class RunManager;
